@@ -63,9 +63,6 @@ class KutuphaneGUI:
         self.tree.heading('Yazar', text='Yazar')
         self.tree.heading('Yayın Yılı', text='Yayın Yılı')
         self.tree.heading('Sayfa Sayısı', text='Sayfa Sayısı')
-        self.tree.pack(expand=True, fill="both", padx=5, pady=5)
-
-        self.kitaplari_listele()
 
     def update_date_time(self):
         now = datetime.now()
@@ -79,6 +76,7 @@ class KutuphaneGUI:
         kitaplar = self.kutuphane.kitaplari_listele()
         for kitap in kitaplar:
             self.tree.insert('', 'end', values=kitap)
+        self.tree.pack(expand=True, fill="both", padx=5, pady=5)
 
     def kitap_ekle(self):
         baslik = simpledialog.askstring("Kitap Ekle", "Kitabın başlığını girin:")
@@ -104,6 +102,7 @@ class KutuphaneGUI:
         kitaplar = self.kutuphane.kitap_ara(sorgu)
         for kitap in kitaplar:
             self.tree.insert('', 'end', values=kitap)
+        self.tree.pack(expand=True, fill="both", padx=5, pady=5)
 
     def exit_app(self):
         answer = messagebox.askyesno("Uygulamadan Çık", "Oturumu sonlandırmak istediğinize emin misiniz?")
@@ -112,7 +111,8 @@ class KutuphaneGUI:
             self.master.destroy()
             messagebox.showinfo("Çıkış", "Oturumunuz sonlandırıldı. İyi günler!")
 
-
+# Algoritma ve kodlama Erdem Erçetin'e ait olup , scrum ve proje kaynak tahkimi Cem Berk Çıracı tarafından analiz edilmiştir.
+    # Akbank Global AI World sertifika programına dahil olup 3. kişiler tarafından aynı amaçla kullanılması kesinlikle yasaktır.
 class Kutuphane:
     def __init__(self):
         self.dosya_adi = "kitaplar.txt"
@@ -145,8 +145,7 @@ class Kutuphane:
         self.dosya.seek(0)
         self.dosya.truncate()
         self.dosya.writelines(guncellenmis_kitaplar)
-# Algoritma ve kodlama Erdem Erçetin'e ait olup , scrum ve proje kaynak tahkimi Cem Berk Çıracı tarafından analiz edilmiştir.
-    # Akbank Global AI World sertifika programına dahil olup 3. kişiler tarafından aynı amaçla kullanılması kesinlikle yasaktır.
+
     def kitap_guncelle(self, baslik):
         self.dosya.seek(0)
         kitaplar = self.dosya.readlines()
