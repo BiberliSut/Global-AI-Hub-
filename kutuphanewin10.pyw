@@ -145,7 +145,7 @@ class Kutuphane:
         self.dosya.seek(0)
         self.dosya.truncate()
         self.dosya.writelines(guncellenmis_kitaplar)
-# Algoritma ve kodlama Erdem Erçetin'e olup , scrum ve proje kaynak tahkimi Cem Berk Çıracı tarafından analiz edilmiştir.
+# Algoritma ve kodlama Erdem Erçetin'e ait olup , scrum ve proje kaynak tahkimi Cem Berk Çıracı tarafından analiz edilmiştir.
     # Akbank Global AI World sertifika programına dahil olup 3. kişiler tarafından aynı amaçla kullanılması kesinlikle yasaktır.
     def kitap_guncelle(self, baslik):
         self.dosya.seek(0)
