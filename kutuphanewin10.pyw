@@ -6,7 +6,7 @@ class KutuphaneGUI:
     
     def __init__(self, master):
         self.master = master
-        master.title("Kütüphane Yönetim Portalı (Programlayan: Erdem Erçetin)")
+        master.title("Kütüphane Yönetim Portalı")
         
         self.kutuphane = Kutuphane()
 
@@ -64,6 +64,21 @@ class KutuphaneGUI:
         self.tree.heading('Yayın Yılı', text='Yayın Yılı')
         self.tree.heading('Sayfa Sayısı', text='Sayfa Sayısı')
 
+        self.coded_by_label = ttk.Label(self.master, text="Algoritma ve kodlama Erdem Erçetin'e ait olup , scrum ve proje kaynak tahkimi Cem Berk Çıracı tarafından analiz edilmiştir : Akbank Global AI World sertifika programına dahil olup 3. kişiler tarafından aynı amaçla kullanılması kesinlikle yasaktır.", background='#333333', foreground='white')
+        self.coded_by_label.pack(side="bottom", fill="x")
+
+        def move_coded_by_label():
+            x = self.coded_by_label.winfo_x()
+            screen_width = self.master.winfo_screenwidth()
+            if x < -self.coded_by_label.winfo_reqwidth():
+                x = screen_width
+            else:
+                x -= 1
+            self.coded_by_label.place(x=x, y=self.master.winfo_height()-self.coded_by_label.winfo_reqheight())
+            self.master.after(10, move_coded_by_label)
+
+        move_coded_by_label()
+
     def update_date_time(self):
         now = datetime.now()
         current_time = now.strftime("%H:%M:%S")
@@ -111,8 +126,6 @@ class KutuphaneGUI:
             self.master.destroy()
             messagebox.showinfo("Çıkış", "Oturumunuz sonlandırıldı. İyi günler!")
 
-# Algoritma ve kodlama Erdem Erçetin'e ait olup , scrum ve proje kaynak tahkimi Cem Berk Çıracı tarafından analiz edilmiştir.
-    # Akbank Global AI World sertifika programına dahil olup 3. kişiler tarafından aynı amaçla kullanılması kesinlikle yasaktır.
 class Kutuphane:
     def __init__(self):
         self.dosya_adi = "kitaplar.txt"
