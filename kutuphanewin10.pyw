@@ -188,9 +188,11 @@ class Kutuphane:
         bulunan_kitaplar = []
         for kitap in kitaplar:
             kitap_bilgisi = kitap.strip().split(',')
-            if any(sorgu in bilgi.lower() for bilgi in kitap_bilgisi):
+        # Convert both the search query and book information to lowercase for case-insensitive comparison
+            if any(sorgu.lower() in bilgi.lower() for bilgi in kitap_bilgisi):
                 bulunan_kitaplar.append((kitap_bilgisi[0], kitap_bilgisi[1], kitap_bilgisi[2], kitap_bilgisi[3]))
         return bulunan_kitaplar
+
 
 root = tk.Tk()
 app = KutuphaneGUI(root)
